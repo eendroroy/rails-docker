@@ -1,0 +1,22 @@
+version: '2'
+
+services:
+
+  rails:
+    build: 'rails'
+    expose:
+      - '666'
+    ports:
+      - '666:666'
+    links:
+      - 'mysql:databasehost'
+
+  mysql:
+    build: 'mysql'
+    volumes:
+      - './mysql/data:/var/lib/mysql:rw'
+    ports:
+      - '3306:3306'
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+
